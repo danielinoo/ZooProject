@@ -15,7 +15,7 @@ class Animal:
         self.width = width
         self.prefer_habitat = prefer_habitat
 
-        self.rec = None #varabile di supporto che "collega Animal e Fence"
+        self.fence : Fence = None #varabile di supporto che "collega Animal e Fence"
         self.health = round(100 * (1 /self.age), 3)
 
 
@@ -58,7 +58,7 @@ class ZooKeeper:
 
     def add_animal(self,animal: Animal, fence: Fence):
 
-        if animal.prefer_habitat != fence.habitat or fence.area > animal.height*animal.width:
+        if animal.prefer_habitat != fence.habitat or fence.area < animal.height*animal.width:
             pass
             
         
@@ -68,7 +68,7 @@ class ZooKeeper:
 
             #sottraggo all' area del recinto l'area del nuovo animale
             fence.area = fence.area - (animal.height * animal.width)
-            animal.rec = fence
+            animal.fence = fence
 
     
 
@@ -95,9 +95,9 @@ class ZooKeeper:
     def feed(self,animal: Animal):
 
 
-        if animal.rec != None:
+        if animal.fence != None:
 
-            if animal.rec.area >= animal.height * animal.width:
+            if animal.fence.area >= animal.height * animal.width:
 
             #variabili di appoggio
                 h : float = animal.height
@@ -110,14 +110,14 @@ class ZooKeeper:
                 animal.height = animal.height * 1.02
                 animal.width = animal.width * 1.02
             
-                if animal.rec.area < animal.height * animal.width:
+                if animal.fence.area < animal.height * animal.width:
 
                 #sedopo averlo nutrito l' animale è troppo grande gli ritornano i valori iniziali
                     animal.height = h
                     animal.width = w
                 
                 else: #aggiorno l area del recinto
-                    animal.rec.area = animal.rec.area - (animal.height * animal.width)
+                    animal.fence.area = animal.fence.area - (animal.height * animal.width)
 
                 
             else:
