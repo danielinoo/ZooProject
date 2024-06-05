@@ -88,7 +88,7 @@ class TestZoo(TestCase):
         zookeeper_1.feed(animal_1)
         result : int = animal_1.fence.area
 
-        message : str = f"Error: l'animale è troppo grasso mettilo a dieta"
+        message : str = f"Error: non entra"
 
         self.assertEqual(result, old_area,message)
 
@@ -108,6 +108,9 @@ class TestZoo(TestCase):
         message : str = f"ERRORE"
 
         self.assertEqual(result, 0,message)
+
+    
+
 
 
     
