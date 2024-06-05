@@ -58,7 +58,7 @@ class ZooKeeper:
 
     def add_animal(self,animal: Animal, fence: Fence):
 
-        if animal.prefer_habitat != fence.habitat and fence.area < animal.height*animal.width:
+        if animal.prefer_habitat != fence.habitat or fence.area > animal.height*animal.width:
             pass
             
         
@@ -131,7 +131,6 @@ class ZooKeeper:
     def clean(self,fence: Fence) -> float:
 
 
-        
 
         #area occupata dagli animali
         area_animali : float = 0
