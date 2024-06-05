@@ -9,9 +9,9 @@ from src.zoo import ZooKeeper, Zoo,Animal,Fence
 
 class TestZoo(TestCase):
 
-    def test_animal_dimesion(self):
+    def test_animal_dimesion(self): 
 
-        """ controlla la dimensione dell animale"""
+        #controllo di add_animal che deve verificare che un animale puo entrare correttamente nel recinto
 
 
 
@@ -24,7 +24,7 @@ class TestZoo(TestCase):
 
         message : str = f"Error:l'animale non entra"
 
-        self.assertEqual(result, 0,message)
+        self.assertEqual(result, 1,message)
 
 
     def test_habitat(self):
@@ -60,37 +60,22 @@ class TestZoo(TestCase):
         self.assertEqual(result, 0,message)
 
 
-    def test_feed(self):
+    def test_feed(self): #controllo se si puo
 
         zookeeper_1 : ZooKeeper = ZooKeeper("gianni","rossi",23)
         fence_1 : Fence = Fence(10,25.0,"savana")
-        animal_1 : Animal = Animal("pluto","canide",2,3.0,1.0,"savana")
-
+        animal_1 : Animal = Animal("pluto","canide",2,10.0,1.0,"savana")
         zookeeper_1.add_animal(animal_1,fence_1)
+        old_area = animal_1.fence.area
+
         zookeeper_1.feed(animal_1)
-        result : int = animal_1.rec
-
-
+        result : int = animal_1.fence.area
 
         message : str = f"Error: l'animale non centra"
 
-        self.assertEqual(result, 0,message)
+        self.assertEqual(result, old_area,message)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 
     def test_clean(self): #controllo se la funzione clean funziona anche se data un area a 0
